@@ -1,1 +1,1 @@
-# Learning_SQl
+# Learning_PostgreSQL
