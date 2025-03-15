@@ -1,0 +1,14 @@
+* Creating the Table with Auto-Increment customer_id
+
+CREATE TABLE customers (
+    customer_id SERIAL PRIMARY KEY);
+
+✅ SERIAL automatically generates unique customer_id values starting from 1.
+✅ PRIMARY KEY ensures that each customer_id is unique.
+
+
+* If You Want to Start From a Specific Number?
+
+ALTER SEQUENCE customers_customer_id_seq RESTART WITH 100;
+
+✅ This makes customer_id start at 100 instead of 1.
