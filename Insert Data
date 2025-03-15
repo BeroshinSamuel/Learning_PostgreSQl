@@ -1,0 +1,21 @@
+Question - A company wants to store customer information in a PostgreSQL database. The customers table has the following columns:
+
+customer_id (integer, primary key, auto-increment)
+customer_name (varchar, not null)
+email (varchar, unique)
+phone (varchar, unique)
+created_at (timestamp, default current timestamp)
+
+Write an SQL INSERT statement to add a new customer named "John Doe" with the email "johndoe@email.com" and phone "123-456-7890" into the customers table.
+
+Solution:
+INSERT INTO customers (customer_name, email, phone)  
+VALUES ('John Doe', 'johndoe@email.com', '123-456-7890');
+
+Explanation:
+We insert values into the customers table.
+The customer_id is auto-incremented, so we don’t need to specify it.
+The created_at column (if set to DEFAULT CURRENT_TIMESTAMP) will automatically store the insertion time.
+
+
+
