@@ -1,0 +1,12 @@
+SELECT * FROM CUSTOMERS;
+This selects all columns from the CUSTOMERS table.
+* means "select everything" (all fields).
+
+Example
+
+If the CUSTOMERS table has customer_id, name, and email, the result will be:
+ customer_id | customer_name |            email            |    phone     |   address
+-------------+---------------+-----------------------------+--------------+-------------
+           1 | Alice Johnson | alice@gmail.com             | 123-456-7890 | 101 Main St
+           2 | Bob Smith     | bob@yahoo.com               | 987-654-3210 | 202 Oak Ave
+           3 | Sam           | beroshinsamuel888@gmail.com | 7898765435   | Chennai
