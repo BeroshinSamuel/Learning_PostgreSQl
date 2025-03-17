@@ -1,0 +1,29 @@
+To remove customers from the database, use the DELETE statement.
+
+Example: Delete a Specific Customer
+
+DELETE FROM customers WHERE customer_id = 6;
+
+✅ This removes customer with ID 1 from the table.
+
+
+ customer_id |   customer_name    |             email              |    phone     |   address
+-------------+--------------------+--------------------------------+--------------+-------------
+           1 | John Smith         | John Smith@company.com         | 987-654-3210 | 101 Main St
+           2 | Bob Smith          | Bob Smith@company.com          | 987-654-3210 | 202 Oak Ave
+           3 | Sam                | Sam@company.com                | 897777       | Chennai
+           4 | user name          | user name@company.com          | 9892734827   | chennai
+           5 | test user          | test user@company.com          | 283748923    | chennai
+           7 | sales agent        | sales agent@company.com        | 43765873     | america
+           8 | admin manager      | admin manager@company.com      | 72349872     | canada
+
+************************************************************************************************************
+Example: Delete All Customers (⚠ Use Carefully!)
+
+DELETE FROM customers;
+
+⚠ Warning: This will delete all records in the customers table.
+
+************************************************************************************************************
+
+
