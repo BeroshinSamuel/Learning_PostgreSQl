@@ -1,0 +1,45 @@
+Problem: Remove the deleted column from the customers table.
+
+ALTER TABLE customers  
+DROP COLUMN phone;
+
+✅ The deleted column is now removed from the table.
+
+Before deleteing column
+
+inventory_db=# select * from customers order by customer_id asc;
+
+ customer_id |   customer_name    |             email              |    phone     |   address   | deleted
+-------------+--------------------+--------------------------------+--------------+-------------+---------
+           2 | Bob Smith          |                                | 987-654-3210 | 202 Oak Ave | f
+           3 | Sam                | Sam@company.com                | 897777       | Chennai     | f
+           4 | user name          | user name@company.com          | 9892734827   | chennai     | f
+           5 | test user          | test user@company.com          | 283748923    | chennai     | t
+           7 | sales agent        | sales agent@company.com        | 43765873     | america     | f
+           8 | admin manager      | admin manager@company.com      | 72349872     | canada      | f
+           9 | genreal manager    | genreal manager@company.com    | 48598237     | srilanka    | f
+          10 | department manager | department manager@company.com | 4985982      | africa      | f
+          11 | ceo                | ceo@company.com                | 8374837      | india       | f
+(9 rows)
+
+
+After deleteing column
+
+inventory_db=# alter table customers
+inventory_db-# drop column deleted;
+ALTER TABLE
+
+inventory_db=# select * from customers order by customer_id;
+
+ customer_id |   customer_name    |             email              |    phone     |   address
+-------------+--------------------+--------------------------------+--------------+-------------
+           2 | Bob Smith          |                                | 987-654-3210 | 202 Oak Ave
+           3 | Sam                | Sam@company.com                | 897777       | Chennai
+           4 | user name          | user name@company.com          | 9892734827   | chennai
+           5 | test user          | test user@company.com          | 283748923    | chennai
+           7 | sales agent        | sales agent@company.com        | 43765873     | america
+           8 | admin manager      | admin manager@company.com      | 72349872     | canada
+           9 | genreal manager    | genreal manager@company.com    | 48598237     | srilanka
+          10 | department manager | department manager@company.com | 4985982      | africa
+          11 | ceo                | ceo@company.com                | 8374837      | india
+(9 rows)
