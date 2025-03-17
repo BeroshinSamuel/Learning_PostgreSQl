@@ -1,0 +1,90 @@
+Instead of deleting a customer permanently, add a deleted flag.
+--------------------------------------------------------------
+
+Step 1: Add a deleted Column
+
+ALTER TABLE customers ADD COLUMN deleted BOOLEAN DEFAULT FALSE;
+
+Example:   
+
+alter table customers add column deleted boolean default false;
+ALTER TABLE
+
+select * from customers order by customer_id asc;
+
+ customer_id |   customer_name    |             email              |    phone     |   address   | deleted
+-------------+--------------------+--------------------------------+--------------+-------------+---------
+           2 | Bob Smith          |                                | 987-654-3210 | 202 Oak Ave | f
+           3 | Sam                | Sam@company.com                | 897777       | Chennai     | f
+           4 | user name          | user name@company.com          | 9892734827   | chennai     | f
+           5 | test user          | test user@company.com          | 283748923    | chennai     | f
+           7 | sales agent        | sales agent@company.com        | 43765873     | america     | f
+           8 | admin manager      | admin manager@company.com      | 72349872     | canada      | f
+           9 | genreal manager    | genreal manager@company.com    | 48598237     | srilanka    | f
+          10 | department manager | department manager@company.com | 4985982      | africa      | f
+          11 | ceo                | ceo@company.com                | 8374837      | india       | f
+(9 rows)
+
+**********************************************************************************************************************
+
+Step 2: "Soft Delete" Instead of Hard Delete
+
+UPDATE customers SET deleted = TRUE WHERE customer_id = 5;
+✅ The customer isn't really deleted, just marked as deleted.
+
+Example:
+
+inventory_db=# update customers
+inventory_db-# set deleted = true where customer_id = 5;
+UPDATE 1
+
+inventory_db=# select * from customers order by customer_id asc;
+
+ customer_id |   customer_name    |             email              |    phone     |   address   | deleted
+-------------+--------------------+--------------------------------+--------------+-------------+---------
+           2 | Bob Smith          |                                | 987-654-3210 | 202 Oak Ave | f
+           3 | Sam                | Sam@company.com                | 897777       | Chennai     | f
+           4 | user name          | user name@company.com          | 9892734827   | chennai     | f
+           5 | test user          | test user@company.com          | 283748923    | chennai     | t
+           7 | sales agent        | sales agent@company.com        | 43765873     | america     | f
+           8 | admin manager      | admin manager@company.com      | 72349872     | canada      | f
+           9 | genreal manager    | genreal manager@company.com    | 48598237     | srilanka    | f
+          10 | department manager | department manager@company.com | 4985982      | africa      | f
+          11 | ceo                | ceo@company.com                | 8374837      | india       | f
+(9 rows)
+
+**********************************************************************************************************************
+
+Step 3: Retrieve Only Active Customers
+
+SELECT * FROM customers WHERE deleted = FALSE;
+✅ This keeps deleted customers in the database, so you can restore them later.
+
+Example:
+
+Active Customers
+
+inventory_db=# select * from customers where deleted = false order by customer_id asc;
+
+ customer_id |   customer_name    |             email              |    phone     |   address   | deleted
+-------------+--------------------+--------------------------------+--------------+-------------+---------
+           2 | Bob Smith          |                                | 987-654-3210 | 202 Oak Ave | f
+           3 | Sam                | Sam@company.com                | 897777       | Chennai     | f
+           4 | user name          | user name@company.com          | 9892734827   | chennai     | f
+           7 | sales agent        | sales agent@company.com        | 43765873     | america     | f
+           8 | admin manager      | admin manager@company.com      | 72349872     | canada      | f
+           9 | genreal manager    | genreal manager@company.com    | 48598237     | srilanka    | f
+          10 | department manager | department manager@company.com | 4985982      | africa      | f
+          11 | ceo                | ceo@company.com                | 8374837      | india       | f
+(8 rows)
+
+Non Actve Customers
+
+inventory_db=# select * from customers where deleted = true order by customer_id;
+
+ customer_id | customer_name |         email         |   phone   | address | deleted
+-------------+---------------+-----------------------+-----------+---------+---------
+           5 | test user     | test user@company.com | 283748923 | chennai | t
+(1 row)
+
+**********************************************************************************************************************
