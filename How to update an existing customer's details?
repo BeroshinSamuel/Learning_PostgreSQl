@@ -1,0 +1,56 @@
+To modify an existing customer’s details, use the UPDATE statement.
+
+Example: Update a Customer’s Email and Phone
+
+UPDATE customers  
+SET email = 'newemail@email.com', phone = '987-654-3210'  
+WHERE customer_id = 1;
+
+✅ This updates customer with ID 1 to have a new email and phone number.
+
+
+
+ customer_id | customer_name |         email         |    phone     |   address
+-------------+---------------+-----------------------+--------------+-------------
+           1 | Alice Johnson | newemail@email.com    | 987-654-3210 | 101 Main St
+           2 | Bob Smith     | Bob Smith@company.com | 987-654-3210 | 202 Oak Ave
+           3 | Sam           | Sam@company.com       | 897777       | Chennai
+           4 | John Doe      | John Doe@company.com  | 123-456-7890 | america
+
+************************************************************************************************
+
+Example: Update Only One Field (e.g., Name)
+
+UPDATE customers  
+SET customer_name = 'John Smith'  
+WHERE customer_id = 1;
+
+✅ This only updates the name while keeping other fields unchanged.
+
+
+
+ customer_id | customer_name |         email         |    phone     |   address
+-------------+---------------+-----------------------+--------------+-------------
+           1 | John Smith    | newemail@email.com    | 987-654-3210 | 101 Main St
+           2 | Bob Smith     | Bob Smith@company.com | 987-654-3210 | 202 Oak Ave
+           3 | Sam           | Sam@company.com       | 897777       | Chennai
+           4 | John Doe      | John Doe@company.com  | 123-456-7890 | america
+
+************************************************************************************************
+
+Example: Updating Multiple Customers (Change Email for All)
+
+UPDATE customers  
+SET email = CONCAT(customer_name, '@newemployee.com');
+
+✅ This updates the email of all customers, setting it as name@newemployee.com.
+
+
+ customer_id | customer_name |          email           |    phone     |   address
+-------------+---------------+--------------------------+--------------+-------------
+           1 | John Smith    | John Smith@newdomain.com | 987-654-3210 | 101 Main St
+           2 | Bob Smith     | Bob Smith@newdomain.com  | 987-654-3210 | 202 Oak Ave
+           3 | Sam           | Sam@newdomain.com        | 897777       | Chennai
+           4 | John Doe      | John Doe@newdomain.com   | 123-456-7890 | america
+
+************************************************************************************************
